@@ -1,0 +1,53 @@
+<h1 mat-dialog-title>Novo Registro/Editar</h1>
+<form [formGroup]="Form" (ngSubmit)="Salvar()">
+  <div mat-dialog-content>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="50">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Nome" formControlName="nome" [(ngModel)]="dados2.nome" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('nome')" label="Nome"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="E-mail" formControlName="email" [(ngModel)]="dados2.email" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('email')" label="E-mail"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="50">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" formControlName="senha" [(ngModel)]="dados2.senha" />
+          <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-error>
+            <app-error-msg [control]="Form.get('senha')" label="Senha"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Confirme Senha"
+            [type]="hide ? 'password' : 'text'"
+            formControlName="senha2"
+            [(ngModel)]="dados2.senha2"
+          />
+          <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+          <mat-error>
+            <app-error-msg [control]="Form.get('senha2')" label="Confirme Senha"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="submit" mat-raised-button color="primary">Confirmar</button>
+    <button mat-button mat-raised-button color="basic" [mat-dialog-close]="true">Fechar</button>
+  </div>
+</form>

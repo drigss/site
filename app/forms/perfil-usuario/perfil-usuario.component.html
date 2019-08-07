@@ -1,0 +1,62 @@
+<form [formGroup]="Form" (ngSubmit)="Salvar()">
+  <div mat-dialog-content>
+    <div fxFlex="100" fxLayout="column" style="margin-top: 20px;">
+      <div fxFlex="100" fxLayout="row" fxLayoutAlign="space-between center">
+        <div fxFlex="40">
+          <img
+            class="avatar"
+            [src]="
+              usuarioLogado.DadosAcesso().avatar
+                ? 'data:image/jpg;base64,' + usuarioLogado.DadosAcesso().avatar
+                : './assets/images/avatars/noavatar.png'
+            "
+          />
+        </div>
+        <div fxFlex="60" fxLayout="column" fxLayoutAlign="center start">
+          <h3 class="mat-title">Nome: {{ usuarioLogado.DadosAcesso().nome }}</h3>
+        </div>
+      </div>
+      <div fxFlex="100" fxLayout="row" fxLayoutGap="20px" style="margin-top: 50px;">
+        <div fxFlex="50">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Senha" [type]="hide ? 'password' : 'text'" formControlName="senha" [(ngModel)]="dados.senha" />
+            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            <mat-error>
+              <app-error-msg [control]="Form.get('senha')" label="Senha"></app-error-msg>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div fxFlex="50">
+          <mat-form-field class="full-width">
+            <input
+              matInput
+              placeholder="Confirme Senha"
+              [type]="hide ? 'password' : 'text'"
+              formControlName="senha2"
+              [(ngModel)]="dados.senha2"
+            />
+            <mat-icon matSuffix (click)="hide = !hide">{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>
+            <mat-error>
+              <app-error-msg [control]="Form.get('senha2')" label="Confirme Senha"></app-error-msg>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+      <div fxFlex="100" fxLayout="row">
+        <div fxFlex="100">
+          <h3 class="mat-title">Avatar:</h3>
+          <input type="file" id="avatar" (change)="handleFileInput($event)" #fileInput accept=".jpg" />
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="submit" mat-raised-button color="primary">
+      <mat-spinner [diameter]="25" *ngIf="Carregando" class="Carregando"></mat-spinner>
+      {{ !Carregando ? 'Confirmar' : '' }}
+    </button>
+    <button mat-button mat-raised-button color="basic" [mat-dialog-close]="true">
+      Fechar
+    </button>
+  </div>
+</form>

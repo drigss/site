@@ -1,0 +1,133 @@
+<h1 mat-dialog-title>Novo Registro/Editar</h1>
+<form [formGroup]="Form" (ngSubmit)="Salvar()">
+  <div mat-dialog-content>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Corretora" formControlName="corretora" [(ngModel)]="dados2.corretora">
+            <mat-option *ngFor="let corretora of corretoras" [value]="corretora.id">
+              {{ corretora.nome }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Número da Nota" formControlName="numero_nota" [(ngModel)]="dados2.numero_nota" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('numero_nota')" label="Número da Nota"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            formControlName="data_nota"
+            [(ngModel)]="dados2.data"
+            [matDatepicker]="dp_data_nota"
+            placeholder="Data da Nota"
+            required
+            appMaskDate
+          />
+          <mat-datepicker-toggle matSuffix [for]="dp_data_nota" disabled></mat-datepicker-toggle>
+          <mat-datepicker #dp_data_nota></mat-datepicker>
+          <mat-error>
+            <app-error-msg [control]="Form.get('data_nota')" label="Data da Nota"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Total Compras"
+            formControlName="total_compras"
+            [(ngModel)]="dados2.total_compras"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('total_compras')" label="Total Compras"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Tota Vendas"
+            formControlName="total_vendas"
+            [(ngModel)]="dados2.total_vendas"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('total_vendas')" label="Tota Vendas"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Liquidação"
+            formControlName="liquidacao"
+            [(ngModel)]="dados2.liquidacao"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('liquidacao')" label="Liquidação"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Registro"
+            formControlName="registro"
+            [(ngModel)]="dados2.registro"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('registro')" label="Registro"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Emolumento"
+            formControlName="emolumento"
+            [(ngModel)]="dados2.emolumento"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('emolumento')" label="Emolumento"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="IR" formControlName="ir" [(ngModel)]="dados2.ir" myNumberOnly />
+          <mat-error>
+            <app-error-msg [control]="Form.get('ir')" label="IR"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="submit" mat-raised-button color="primary">Confirmar</button>
+    <button mat-button mat-raised-button color="basic" [mat-dialog-close]="true">Fechar</button>
+  </div>
+</form>

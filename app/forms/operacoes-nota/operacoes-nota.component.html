@@ -1,0 +1,131 @@
+<h1 mat-dialog-title>Novo Registro/Editar</h1>
+<div mat-dialog-content>
+  <form [formGroup]="Form" (ngSubmit)="Salvar()">
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Operação" formControlName="operacao" [(ngModel)]="dados2.operacao">
+            <mat-option *ngFor="let operacao of operacoes" [value]="operacao.id">
+              {{ operacao.descricao }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-error-msg [control]="Form.get('operacao')" label="Operação"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Ticker" formControlName="ticker" [(ngModel)]="dados2.ticker" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('ticker')" label="Ticker"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <mat-select placeholder="Papel" formControlName="papel" [(ngModel)]="dados2.papel">
+            <mat-option *ngFor="let papel of papeis" [value]="papel.id">
+              {{ papel.descricao }}
+            </mat-option>
+          </mat-select>
+          <mat-error>
+            <app-error-msg [control]="Form.get('papel')" label="Papel"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Quantidade" formControlName="quantidade" [(ngModel)]="dados2.quantidade" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('quantidade')" label="Quantidade"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="Preço Unitário"
+            formControlName="preco_unitario"
+            [(ngModel)]="dados2.preco_unitario"
+            currencyMask
+            [options]="{ prefix: 'R$ ', thousands: '.', decimal: ',' }"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('preco_unitario')" label="Preço Unitário"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <button type="submit" mat-raised-button color="primary">Adicionar</button>
+      </div>
+    </div>
+  </form>
+  <div class="table-container" style="overflow-x: auto; height: 300px;">
+    <mat-progress-bar mode="indeterminate" *ngIf="Carregando"></mat-progress-bar>
+    <mat-table #table [dataSource]="dataSource">
+      <ng-container matColumnDef="operacao">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Operação
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.operacao }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="ticker">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Ticker
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.ticker }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="papel">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Papel
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.papel }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="quantidade">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Quantidade
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.quantidade }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="preco_unitario">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          PU
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.preco_unitario }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="preco_total">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          PT
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.preco_total }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="liquido">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>
+          Liq.
+        </mat-header-cell>
+        <mat-cell *matCellDef="let row"> {{ row.liquido }} </mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="operacoes">
+        <mat-header-cell *matHeaderCellDef>Operações</mat-header-cell>
+        <mat-cell *matCellDef="let row">
+          <button type="button" mat-icon-button title="Excluir" (click)="$event.stopPropagation(); Excluir(row)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-cell>
+        <mat-footer-cell *matFooterCellDef></mat-footer-cell>
+      </ng-container>
+      <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+      <mat-row *matRowDef="let row; columns: displayedColumns" class="example-element-row"></mat-row>
+    </mat-table>
+    <div class="no-results" [style.display]="dataSource?.length == 0 ? '' : 'none'">
+      Nenhuma operação realizada!
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions align="end">
+  <button mat-button mat-raised-button color="basic" [mat-dialog-close]="true">Fechar</button>
+</div>

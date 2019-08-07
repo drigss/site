@@ -1,0 +1,33 @@
+<div fxLayout="column" fxFlexFill fxLayoutAlign="center center">
+  <div fxLayout="column" style="width: 350px;">
+    <div class=" mat-elevation-z4">
+      <mat-card>
+        <mat-card-title>Acessar Sistema </mat-card-title>
+        <mat-card-content>
+          <form fxLayout="column" fxLayoutAlign="start stretch" [formGroup]="Form" (ngSubmit)="AcessarSistema()">
+            <mat-form-field class="full-width">
+              <input matInput formControlName="email" placeholder="E-mail" [(ngModel)]="dados.email" required />
+              <mat-error *ngFor="let validation of validacao_mensagens.email">
+                <mat-error class="error-message" *ngIf="!Form.get('email').valid || Form.get('email').dirty || Form.get('email').touched">{{
+                  validation.message
+                }}</mat-error>
+              </mat-error>
+            </mat-form-field>
+            <mat-form-field class="full-width">
+              <input matInput formControlName="senha" placeholder="Senha" type="password" [(ngModel)]="dados.senha" />
+              <mat-error *ngFor="let validation of validacao_mensagens.senha">
+                <mat-error class="error-message" *ngIf="!Form.get('senha').valid || Form.get('senha').dirty || Form.get('senha').touched">{{
+                  validation.message
+                }}</mat-error>
+              </mat-error>
+            </mat-form-field>
+            <button type="submit" mat-raised-button color="primary" [disabled]="!Form.valid" class="acessar">
+              <mat-spinner [diameter]="25" *ngIf="Carregando" class="Carregando"></mat-spinner>
+              {{ !Carregando ? 'Acessar' : '' }}
+            </button>
+          </form>
+        </mat-card-content>
+      </mat-card>
+    </div>
+  </div>
+</div>

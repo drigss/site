@@ -1,0 +1,82 @@
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+    $font-family:   'Roboto, "Helvetica Neue", sans-serif',
+    $display-4:     mat-typography-level(112px, 112px, 300),
+    $display-3:     mat-typography-level(56px, 56px, 300),
+    $display-2:     mat-typography-level(45px, 48px, 300),
+    $display-1:     mat-typography-level(34px, 40px, 300),
+    $headline:      mat-typography-level(14px, 32px, 300),
+    $title:         mat-typography-level(20px, 32px, 300),
+    $subheading-2:  mat-typography-level(22px, 28px, 300),
+    $subheading-1:  mat-typography-level(15px, 24px, 300),
+    $body-2:        mat-typography-level(14px, 24px, 300),
+    $body-1:        mat-typography-level(14px, 20px, 300),
+    $caption:       mat-typography-level(12px, 20px, 300),
+    $button:        mat-typography-level(14px, 14px, 300),
+    $input:         mat-typography-level(16px, 1.125, 300)
+);
+
+/* fallback */
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/material-icons.woff2') format('woff2');
+  }
+  
+  .material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+  }
+
+/* roboto-300 - latin */
+@font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 300;
+    src: url('../assets/fonts/roboto-v18-latin-300.eot'); /* IE9 Compat Modes */
+    src: local('Roboto Light'), local('Roboto-Light'),
+         url('../assets/fonts/roboto-v18-latin-300.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/roboto-v18-latin-300.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../assets/fonts/roboto-v18-latin-300.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/roboto-v18-latin-300.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../assets/fonts/roboto-v18-latin-300.svg#Roboto') format('svg'); /* Legacy iOS */
+  }
+  /* roboto-regular - latin */
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../assets/fonts/roboto-v18-latin-regular.eot'); /* IE9 Compat Modes */
+    src: local('Roboto'), local('Roboto-Regular'),
+         url('../assets/fonts/roboto-v18-latin-regular.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/roboto-v18-latin-regular.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../assets/fonts/roboto-v18-latin-regular.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/roboto-v18-latin-regular.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../assets/fonts/roboto-v18-latin-regular.svg#Roboto') format('svg'); /* Legacy iOS */
+  }
+  /* roboto-500 - latin */
+  @font-face {
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 500;
+    src: url('../assets/fonts/roboto-v18-latin-500.eot'); /* IE9 Compat Modes */
+    src: local('Roboto Medium'), local('Roboto-Medium'),
+         url('../assets/fonts/roboto-v18-latin-500.eot?#iefix') format('embedded-opentype'), /* IE6-IE8 */
+         url('../assets/fonts/roboto-v18-latin-500.woff2') format('woff2'), /* Super Modern Browsers */
+         url('../assets/fonts/roboto-v18-latin-500.woff') format('woff'), /* Modern Browsers */
+         url('../assets/fonts/roboto-v18-latin-500.ttf') format('truetype'), /* Safari, Android, iOS */
+         url('../assets/fonts/roboto-v18-latin-500.svg#Roboto') format('svg'); /* Legacy iOS */
+  }

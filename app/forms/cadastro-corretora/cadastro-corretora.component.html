@@ -1,0 +1,60 @@
+<h1 mat-dialog-title>Novo Registro/Editar</h1>
+<form [formGroup]="Form" (ngSubmit)="Salvar()">
+  <div mat-dialog-content>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="50">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Corretora" formControlName="nome" [(ngModel)]="dados2.nome" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('nome')" label="Corretora"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="50">
+        <mat-form-field class="full-width">
+          <input
+            matInput
+            placeholder="CNPJ"
+            formControlName="cnpj"
+            [(ngModel)]="dados2.cnpj"
+            mask="00.000.000/0000-00"
+            [dropSpecialCharacters]="false"
+          />
+          <mat-error>
+            <app-error-msg [control]="Form.get('cnpj')" label="CNPJ"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+    <div fxLayout="row" fxLayout.lt-sm="column" fxLayoutGap="20px">
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Banco" formControlName="banco" [(ngModel)]="dados2.banco" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('banco')" label="Banco"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Agência" formControlName="agencia" [(ngModel)]="dados2.agencia" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('agencia')" label="Agência"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+      <div fxFlex="33">
+        <mat-form-field class="full-width">
+          <input matInput placeholder="Conta" formControlName="conta" [(ngModel)]="dados2.conta" />
+          <mat-error>
+            <app-error-msg [control]="Form.get('conta')" label="Conta"></app-error-msg>
+          </mat-error>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions align="end">
+    <button type="submit" mat-raised-button color="primary">Confirmar</button>
+    <button mat-button mat-raised-button color="basic" [mat-dialog-close]="true">Fechar</button>
+  </div>
+</form>
